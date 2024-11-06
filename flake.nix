@@ -10,13 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-gaming = {
-      url = "github:fufexan/nix-gaming";
+      url = "github:fufexan/nix-gaming/8756862665662edad5bbb098d0cba727cde57fec";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -32,12 +27,12 @@
     };
 
     zen-browser = {
-      url = "github:MarceColl/zen-browser-flake";
+      url = "github:ch4og/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     winapps = {
-      url = "github:winapps-org/winapps/7f3cdcee4d209e2187d006fa6846f3d332f6fc77";
+      url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -48,7 +43,6 @@
     nur,
     rust-overlay,
     zen-browser,
-    stylix,
     winapps,
     home-manager,
     ...
@@ -70,6 +64,7 @@
           pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = true;
+            config.permittedInsecurePackages = ["qbittorrent-4.6.4"];
 
             overlays = [
               nur.overlay
@@ -78,7 +73,7 @@
               overlays.protonup-qt
               overlays.git-blame-someone-else
               (final: prev: {
-                zen-browser = zen-browser.packages."${system}".specific;
+                zen-browser = prev.lib.makeOverridable zen-browser.packages."${system}".specific;
 
                 winapps = winapps.packages."${system}".winapps;
                 winapps-launcher = winapps.packages."${system}".winapps-launcher;
@@ -108,7 +103,6 @@
             ];
           })
 
-          stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           ./configuration.nix
         ];

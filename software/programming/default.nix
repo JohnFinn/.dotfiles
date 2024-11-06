@@ -17,6 +17,7 @@
     jetbrains.rust-rover
     jetbrains.phpstorm
     jetbrains.idea-ultimate
+    jetbrains.datagrip
 
     android-studio
 

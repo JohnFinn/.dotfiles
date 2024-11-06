@@ -3,7 +3,34 @@
   config,
   ...
 }: let
-  theme = pkgs.stdenv.mkDerivation {
+  theme = pkgs.stdenvNoCC.mkDerivation rec {
+    pname = "firefox-gnome-theme";
+    version = "129";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "rafaelmardojai";
+      repo = "${pname}";
+      rev = "v${version}";
+      hash = "sha256-MOE9NeU2i6Ws1GhGmppMnjOHkNLl2MQMJmGhaMzdoJM=";
+    };
+
+    dontConfigure = true;
+    dontBuild = true;
+
+    installPhase = ''
+      mkdir -p $out
+      cp -r ./* $out/
+    '';
+
+    meta = with pkgs.lib; {
+      description = "A GNOME theme for Firefox";
+      homepage = "https://github.com/rafaelmardojai/firefox-gnome-theme";
+      license = licenses.unlicense;
+      platforms = platforms.all;
+    };
+  };
+  /*
+    pkgs.stdenv.mkDerivation {
     name = "arcwtf";
     src = pkgs.fetchgit {
       url = "https://github.com/KiKaraage/ArcWTF";
@@ -15,10 +42,11 @@
       cp -v -r $src $out/
     '';
   };
+  */
 in {
   programs.firefox = {
     enable = true;
-    # package = pkgs.firefox-devedition;
+    package = pkgs.firefox-devedition;
   };
 
   home.file."/.mozilla/firefox/0/chrome" = {
@@ -27,7 +55,7 @@ in {
     recursive = true;
   };
 
-  programs.firefox.profiles."0" = {
+  programs.firefox.profiles."dev-edition-default" = {
     id = 0;
 
     search = {
@@ -67,8 +95,8 @@ in {
     };
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      sidebery
-      userchrome-toggle
+      # sidebery
+      # userchrome-toggle
 
       ublock-origin
       bitwarden

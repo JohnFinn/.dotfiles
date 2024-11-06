@@ -3,12 +3,12 @@ final: prev: {
     srcs = [
       old.src
       (prev.fetchurl {
-        url = "https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/67e2e1db68b082c57398602720886489781e7dd3/spotx.sh";
-        hash = "sha256-P4sCZcX4K7U/5Ha6EfqTvAMMU0ex5/3vSRLA/RfZaD0=";
+        url = "https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/9b8e3a6c443f5bde5803505105a569fac8510668/spotx.sh";
+        hash = "sha256-vry/wB5mcQUNeUUwwipzGwsZhxOJYJkc2w5z9vmcRdE=";
       })
     ];
 
-    nativeBuildInputs = old.nativeBuildInputs ++ [prev.util-linux prev.perl prev.unzip prev.zip prev.curl];
+    nativeBuildInputs = old.nativeBuildInputs ++ (with prev; [util-linux perl unzip zip curl]);
 
     unpackPhase =
       builtins.replaceStrings
