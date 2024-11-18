@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs-unstable,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     # ./rust.nix
     ./docker.nix
@@ -22,7 +18,7 @@
     android-studio
 
     neovim
-    pkgs-unstable.zed-editor
+    zed-editor
 
     gitFull
     git-blame-someone-else

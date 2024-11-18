@@ -8,7 +8,7 @@
     settings = let
       family = "JetBrainsMono Nerd Font";
     in {
-      shell = "${pkgs.tmux}/bin/tmux";
+      terminal.shell = "${pkgs.tmux}/bin/tmux";
       font = {
         size = 13.0;
         normal = {

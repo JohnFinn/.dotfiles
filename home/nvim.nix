@@ -26,6 +26,9 @@
 
     extraLuaConfig = let
       plugins = with pkgs.vimPlugins; [
+        # custom
+        vim-be-good
+
         # LazyVim
         LazyVim
         bufferline-nvim
@@ -34,7 +37,7 @@
         cmp-path
         cmp_luasnip
         conform-nvim
-        dashboard-nvim
+        alpha-nvim
         dressing-nvim
         flash-nvim
         friendly-snippets

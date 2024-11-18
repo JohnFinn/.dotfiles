@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   nix-gaming,
   nix-citizen,
   ...
@@ -19,7 +18,7 @@
 
     prismlauncher
 
-    pkgs-unstable.path-of-building
+    path-of-building
 
     nix-gaming.packages.${system}.osu-lazer-bin
 

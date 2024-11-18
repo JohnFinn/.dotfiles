@@ -40,24 +40,22 @@
     };
   };
 
-  environment.gnome.excludePackages =
-    (with pkgs; [
-      gnome-photos
-      gnome-tour
-      gnome-console
-    ])
-    ++ (with pkgs.gnome; [
-      cheese # webcam tool
-      gnome-music
-      gnome-terminal
-      epiphany # web browser
-      gnome-characters
-      tali # poker game
-      iagno # go game
-      hitori # sudoku game
-      atomix # puzzle game
-    ]);
+  environment.gnome.excludePackages = with pkgs; [
+    gnome-photos
+    gnome-tour
+    gnome-console
 
-  services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+    cheese # webcam tool
+    gnome-music
+    gnome-terminal
+    epiphany # web browser
+    gnome-characters
+    tali # poker game
+    iagno # go game
+    hitori # sudoku game
+    atomix # puzzle game
+  ];
+
+  services.udev.packages = with pkgs; [gnome-settings-daemon];
   environment.systemPackages = with pkgs; [gnomeExtensions.appindicator];
 }
