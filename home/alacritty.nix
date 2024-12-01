@@ -9,7 +9,6 @@
       family = "JetBrainsMono Nerd Font";
     in {
       terminal.shell = "${pkgs.tmux}/bin/tmux";
-
       font = {
         size = 14.0;
         normal = {
