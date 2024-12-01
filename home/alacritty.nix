@@ -9,8 +9,9 @@
       family = "JetBrainsMono Nerd Font";
     in {
       terminal.shell = "${pkgs.tmux}/bin/tmux";
+      
       font = {
-        size = 13.0;
+        size = 14.0;
         normal = {
           inherit family;
           style = "Regular";
@@ -26,6 +27,11 @@
           style = "Italic";
         };
       };
+    };
+
+    window = {
+      decorations = "None";
+      startup_mode = "Maximized";
     };
   };
 }
