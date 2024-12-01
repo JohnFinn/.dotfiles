@@ -22,7 +22,7 @@ in rec {
     script = pkgs.writeScript "hm-${username}-pre-start" ''
       #!${pkgs.bash}/bin/bash
 
-      ${pkgs.findutils}/bin/find /home/${username}/.mozilla/firefox/0 -type f -iname "*.${home-manager.backupFileExtension}" \
+      ${pkgs.findutils}/bin/find /home/${username}/.mozilla/firefox -type f -iname "*.${home-manager.backupFileExtension}" \
         | ${pkgs.findutils}/bin/xargs -i rm "{}"
     '';
   in "${script}";
